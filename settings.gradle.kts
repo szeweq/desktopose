@@ -6,4 +6,4 @@ pluginManagement {
     }
 }
 
-include("hover")
+include(":core", ":hover", ":combo-box")
