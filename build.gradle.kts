@@ -19,9 +19,6 @@ plugins {
 }
 
 allprojects {
-    version = "0.1.0"
-    group = "com.github.szeweq.desktopose"
-
     repositories {
         mavenCentral()
         maven { url = uri("https://maven.pkg.jetbrains.space/public/p/compose/dev") }
