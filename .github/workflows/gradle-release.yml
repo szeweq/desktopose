@@ -28,12 +28,12 @@ jobs:
         run: chmod +x gradlew
       - name: Build with Gradle
         run: ./gradlew build -Pversion=${GITHUB_REF#refs/*/}
-      - name: Upload release asset
+      - name: Create a release
         uses: softprops/action-gh-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          files: ./*/build/libs/*
+#        with:
+#          files: ./*/build/libs/*
       - name: Clean Gradle Cache
         run: |
           rm -f ~/.gradle/caches/modules-2/modules-2.lock
