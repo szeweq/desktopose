@@ -1,5 +1,6 @@
 package szeweq.desktopose.combobox
 
+import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -44,7 +45,7 @@ fun ComboBoxItem(
     onClick and LocalDismissMethod.current,
     modifier.heightIn(min = 32.dp, max = 32.dp),
     contentPadding = contentPadding,
-    content = UseScopeText(text)
+    content = UseScopeText(text, style = LocalTextStyle.current)
 )
 
 @Composable
