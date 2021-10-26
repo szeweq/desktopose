@@ -6,4 +6,4 @@ pluginManagement {
     }
 }
 
-include(":core", ":hover", ":combo-box")
+include(":core", ":hover", ":combo-box", ":progress")
