@@ -8,9 +8,21 @@ import androidx.compose.material.LinearProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+
+@Composable
+fun rememberProgressState() = rememberSaveable(
+    saver = ProgressState.Saver
+) { ProgressState() }
+
+@Composable
+fun rememberMessageProgressState() = rememberSaveable(
+    saver = MessageProgressState.Saver
+) { MessageProgressState() }
 
 @Composable
 fun LinearIndicator(

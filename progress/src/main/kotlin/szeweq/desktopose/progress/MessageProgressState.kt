@@ -1,18 +1,20 @@
-package szeweq.desktopose.progress;
+package szeweq.desktopose.progress
 
-import androidx.compose.runtime.MutableState;
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.listSaver
+import androidx.compose.runtime.setValue
 
-import static androidx.compose.runtime.SnapshotStateKt.mutableStateOf;
-import static androidx.compose.runtime.SnapshotStateKt.structuralEqualityPolicy;
+class MessageProgressState : ProgressState() {
+    var message by mutableStateOf("")
 
-public class MessageProgressState extends ProgressState {
-    private final MutableState<String> ms = mutableStateOf("", structuralEqualityPolicy());
-
-    public String getMessage() {
-        return ms.getValue();
-    }
-
-    public void setMessage(String message) {
-        ms.setValue(message);
+    companion object {
+        val Saver = listSaver<MessageProgressState, Any>(
+            save = { listOf(it.value, it.message) },
+            restore = { MessageProgressState().apply {
+                value = (it[0] as Float)
+                message = it[1] as String
+            } }
+        )
     }
 }

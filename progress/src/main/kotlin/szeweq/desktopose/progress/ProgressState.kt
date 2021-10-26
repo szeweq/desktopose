@@ -1,43 +1,39 @@
-package szeweq.desktopose.progress;
+package szeweq.desktopose.progress
 
-import androidx.compose.runtime.MutableState;
-import szeweq.desktopose.core.LongBiConsumer;
-
-import static androidx.compose.runtime.SnapshotStateKt.mutableStateOf;
-import static androidx.compose.runtime.SnapshotStateKt.structuralEqualityPolicy;
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.Saver
+import androidx.compose.runtime.saveable.autoSaver
+import androidx.compose.runtime.setValue
+import szeweq.desktopose.core.LongBiConsumer
 
 /**
  * A state object for displaying and updating values in process-related tasks (like downloading a file).
  */
-public class ProgressState implements LongBiConsumer {
-    private final MutableState<Float> state = mutableStateOf(Float.MAX_VALUE, structuralEqualityPolicy());
+open class ProgressState : LongBiConsumer {
+    var value: Float by mutableStateOf(Float.MAX_VALUE)
 
-    public float getValue() {
-        return state.getValue();
+    val isActive: Boolean
+        get() = value <= 1f
+    val isIndeterminate: Boolean
+        get() = value == -1f
+
+    fun setIndeterminate() {
+        value = -1f
     }
 
-    public void setValue(float v) {
-        state.setValue(v);
+    fun setFinished() {
+        value = Float.MAX_VALUE
     }
 
-    public boolean isActive() {
-        return getValue() <= 1f;
+    override fun accept(l: Long, r: Long) {
+        value = l.toFloat() / r
     }
 
-    public boolean isIndeterminate() {
-        return getValue() == -1f;
-    }
-
-    public void setIndeterminate() {
-        setValue(-1f);
-    }
-
-    public void setFinished() {
-        setValue(Float.MAX_VALUE);
-    }
-
-    @Override
-    public void accept(long l, long r) {
-        setValue(((float) l) / r);
+    companion object {
+        val Saver: Saver<ProgressState, *> = Saver(
+            save = { it.value },
+            restore = { ProgressState().apply { value = it } }
+        )
     }
 }
