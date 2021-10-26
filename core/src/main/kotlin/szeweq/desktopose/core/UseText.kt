@@ -14,9 +14,10 @@ import androidx.compose.ui.unit.TextUnit
 fun UseScopeText(
     text: String,
     fontSize: TextUnit = TextUnit.Unspecified,
-    style: TextStyle = LocalTextStyle.current
+    style: TextStyle? = null
 ): @Composable Any.() -> Unit = {
-    Text(text, fontSize = fontSize, style = style)
+    val textStyle = style ?: LocalTextStyle.current
+    Text(text, fontSize = fontSize, style = textStyle)
 }
 
 /**
@@ -27,7 +28,8 @@ fun UseScopeText(
 fun UseText(
     text: String,
     fontSize: TextUnit = TextUnit.Unspecified,
-    style: TextStyle = LocalTextStyle.current
+    style: TextStyle? = null
 ): @Composable () -> Unit = {
-    Text(text, fontSize = fontSize, style = style)
+    val textStyle = style ?: LocalTextStyle.current
+    Text(text, fontSize = fontSize, style = textStyle)
 }
