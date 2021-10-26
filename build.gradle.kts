@@ -1,3 +1,5 @@
+import org.jetbrains.compose.compose
+
 buildscript {
     val composeVer = "1.0.0-beta1"
 
@@ -54,5 +56,9 @@ subprojects {
                 from(components["java"])
             }
         }
+    }
+
+    dependencies {
+        implementation(compose.desktop.common)
     }
 }
