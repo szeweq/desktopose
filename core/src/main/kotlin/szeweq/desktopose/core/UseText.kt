@@ -10,7 +10,6 @@ import androidx.compose.ui.unit.TextUnit
  * Returns a simple text component that only uses [text] and [fontSize] parameters.
  * It saves a lot of bytecode size if used inside scoped components (rows, columns, buttons, etc.).
  */
-@Composable
 fun UseScopeText(
     text: String,
     fontSize: TextUnit = TextUnit.Unspecified,
@@ -24,7 +23,6 @@ fun UseScopeText(
  * Returns a simple text component that only uses [text] and [fontSize] parameters.
  * It saves a lot of bytecode size if used inside another component that does not use any scope.
  */
-@Composable
 fun UseText(
     text: String,
     fontSize: TextUnit = TextUnit.Unspecified,
